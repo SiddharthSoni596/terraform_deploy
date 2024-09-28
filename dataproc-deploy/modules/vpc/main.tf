@@ -1,5 +1,5 @@
 locals {
-  ip_cidr_range = "10.10.10.0/28"
+  ip_cidr_range = "10.0.1.0/24"
 }
 
 resource "google_compute_network" "dataproc_network" {
@@ -9,8 +9,7 @@ resource "google_compute_network" "dataproc_network" {
 
 resource "google_compute_subnetwork" "us_east1" {
   depends_on               = [google_compute_network.dataproc_network]
-  count                    = 1
-  name                     = "${var.prefix}-${count.index}-subnetwork"
+  name                     = "${var.prefix}-subnetwork"
   ip_cidr_range            = local.ip_cidr_range
   region                   = var.region
   network                  = google_compute_network.dataproc_network.id
