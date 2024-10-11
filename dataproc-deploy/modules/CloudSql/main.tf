@@ -16,8 +16,8 @@ resource "google_sql_database_instance" "instance" {
   name             = "dmeo-instance"
   region           = "us-central1"
   database_version = "MYSQL_8_0"
-  deletion_protection  = "false"
-  project = "burner-sidsoni1"
+  deletion_protection  = false
+  project = var.project_id
 
   depends_on = [google_service_networking_connection.private_vpc_connection]
 
