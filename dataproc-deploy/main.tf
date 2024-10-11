@@ -23,6 +23,8 @@ module "iam" {
 
 #module "cluster_template" {
 #  source      = "./modules/dataproc-workflow-template"
+#module "cluster_template" {
+#  source      = "./modules/dataproc-workflow-template"
 #  prefix      = var.prefix
 #  region      = var.region
 #  svc_email   = module.iam.svc_email_name
@@ -41,4 +43,12 @@ module "CloudSqlDb" {
   source = "./modules/CloudSql"
   network_id = module.custom_vpc.vpc_id
   network_self_link = module.custom_vpc.vpc_self_link
+}
+module "cluster" {
+  source      = "./modules/dataproc-cluster"
+  prefix      = var.prefix
+  region      = var.region
+  svc_email   = module.iam.svc_email_name
+  bucket_name = module.bucket.bucket_name
+  subnet_id   = module.custom_vpc.subnet_id
 }
