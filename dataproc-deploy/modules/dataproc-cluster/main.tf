@@ -40,5 +40,9 @@ resource "google_dataproc_cluster" "mycluster" {
       service_account_scopes = ["cloud-platform"]
       internal_ip_only = true
     }
+
+    endpoint_config {
+      enable_http_port_access = true
+    }
   }
 }

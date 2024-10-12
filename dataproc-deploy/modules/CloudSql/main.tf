@@ -34,7 +34,7 @@ resource "google_sql_database_instance" "instance" {
 
 #Creating the Database inside the Instance
 resource "google_sql_database" "database" {
-  name     = "my-db"
+  name     = "my_db"
   instance = google_sql_database_instance.instance.name
 }
 
